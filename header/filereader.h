@@ -1,0 +1,11 @@
+//
+// Created by Arys on 17/10/2022.
+//
+
+#ifndef ESGI_CASSEBRICK_FILEREADER_H
+#define ESGI_CASSEBRICK_FILEREADER_H
+
+
+void test();
+
+#endif //ESGI_CASSEBRICK_FILEREADER_H

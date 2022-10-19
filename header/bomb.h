@@ -4,11 +4,22 @@
 
 #ifndef ESGI_CASSEBRICK_BOMB_H
 #define ESGI_CASSEBRICK_BOMB_H
+#include <stdlib.h>
+
+enum clock_timer_STATUS {
+    BOOM,
+    TIC_TAC,
+    INVENTORY,
+};
 
 typedef struct {
     int pos_x; //-1 (dans l'inventaire)
     int pos_y; //-1 (dans l'inventaire)
     int clock; //-1 (dans l'inventaire)
 } Bomb;
+
+Bomb *build_bomb();
+void free_bomb(Bomb *b);
+enum clock_timer_STATUS update_bomb_clock(Bomb *b);
 
 #endif //ESGI_CASSEBRICK_BOMB_H

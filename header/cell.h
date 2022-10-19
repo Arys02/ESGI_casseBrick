@@ -28,7 +28,7 @@ typedef struct {
 
 Cell *build_cell();
 void free_cell(Cell *cell);
-int update_cell(void *new_content);
+int update_cell(void *new_content, enum kind_cell);
 char get_char_cell(Cell *cell);
 
 #endif //ESGI_CASSEBRICK_CELL_H

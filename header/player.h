@@ -5,4 +5,48 @@
 #ifndef ESGI_CASSEBRICK_PLAYER_H
 #define ESGI_CASSEBRICK_PLAYER_H
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "object.h"
+#include "bomb.h"
+
+enum bomb_collision {
+    NONE,
+    PASS,
+    KICK
+};
+
+typedef struct {
+    char *name;
+    char symbol;
+    int life;
+    int bomb_range;
+    int bomb_quantity;
+    int pos_x;
+    int pos_y;
+    Bomb **Inventory;
+
+    //objects
+    int has_heart;
+    int immunity_clock;
+    enum bomb_collision bc;
+}
+Player;
+
+
+Player *build_player(char *name);
+//update all clocks from the players (bomb and immunity if it has one)
+void update_clocks_player(Player *p);
+
+void update_bomb_range_player(Player *p, int new_value);
+void update_bomb_quantity_player(Player *p, int new_value);
+void update_bomb_collision(Player *p, enum bomb_collision);
+
+void get_object_player(Player *p, enum object_type);
+void update_player_pos(Player *p, int x, int y);
+void drop_bomb_player(Player *p);
+
+
+
 #endif //ESGI_CASSEBRICK_PLAYER_H

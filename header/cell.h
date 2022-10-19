@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include "player.h"
 #include "bomb.h"
+#include "object.h"
 
 enum kind_cell {
     PLAYER,

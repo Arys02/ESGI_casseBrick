@@ -12,7 +12,7 @@ Cell *build_cell(){
 void free_cell(Cell *cell){
     //TODO
 }
-int update_cell(void *new_content){
+int update_cell(void *new_content, enum kind_cell){
     //TODO
     return 0;
 }

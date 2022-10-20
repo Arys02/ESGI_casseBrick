@@ -6,6 +6,8 @@
 #include <stdio.h>
 
 
-void test(){
-    printf("ceci est un test\n");
+
+Cell **board_from_file(char *file){
+    //TODO
+    return NULL;
 }

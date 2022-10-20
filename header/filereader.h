@@ -5,7 +5,8 @@
 #ifndef ESGI_CASSEBRICK_FILEREADER_H
 #define ESGI_CASSEBRICK_FILEREADER_H
 
+#include "cell.h"
 
-void test();
+Cell **board_from_file(char *file);
 
 #endif //ESGI_CASSEBRICK_FILEREADER_H

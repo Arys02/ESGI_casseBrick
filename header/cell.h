@@ -16,6 +16,7 @@ enum kind_cell {
     BOMB,
     OBJECT,
     WALL,
+    UNBREAK,
     VOID
 };
 
@@ -27,7 +28,7 @@ typedef struct {
     void *content; // can be a Player*, a Bomb* or an Object*
 } Cell;
 
-Cell *build_cell();
+Cell *build_cell(enum kind_cell kc);
 void free_cell(Cell *cell);
 int update_cell(void *new_content, enum kind_cell);
 char get_char_cell(Cell *cell);

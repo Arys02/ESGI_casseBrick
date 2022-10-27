@@ -30,7 +30,7 @@ typedef struct {
 
 Cell *build_cell(enum kind_cell kc);
 void free_cell(Cell *cell);
-int update_cell(void *new_content, enum kind_cell);
+int update_cell(Cell *c, void *new_content, enum kind_cell kc);
 char get_char_cell(Cell *cell);
 
 #endif //ESGI_CASSEBRICK_CELL_H

@@ -34,18 +34,6 @@ Cell *build_cell(enum kind_cell kc){
             new_cell->is_destructible = 1;
             new_cell->content = NULL;
             break;
-        case BOMB:
-            new_cell->c = 'b';
-            new_cell->is_empty = 0;
-            new_cell->is_destructible = 1;
-            new_cell->content = NULL;
-            break;
-        case OBJECT:
-            new_cell->c = 'o';
-            new_cell->is_empty = 0;
-            new_cell->is_destructible = 1;
-            new_cell->content = NULL;
-            break;
         case WALL:
             new_cell->c = 'w';
             new_cell->is_empty = 0;
@@ -57,7 +45,7 @@ Cell *build_cell(enum kind_cell kc){
             new_cell->is_empty = 1;
             new_cell->is_destructible = 1;
             new_cell->content = NULL;
-        case UNBREAK:
+        default://should be an unbreakable wall
             new_cell->c = 'u';
             new_cell->is_empty = 0;
             new_cell->is_destructible = 0;
@@ -71,8 +59,22 @@ Cell *build_cell(enum kind_cell kc){
 void free_cell(Cell *cell){
     free(cell);
 }
-int update_cell(void *new_content, enum kind_cell){
-    //TODO
+int update_cell(Cell *c, void *new_content, enum kind_cell kc){
+    switch (kc) {
+        case PLAYER:
+            break;
+        case BOMB:
+            break;
+        case OBJECT:
+            break;
+        case WALL:
+            break;
+        case UNBREAK:
+            break;
+        case VOID:
+            break;
+
+    }
     return 0;
 }
 char get_char_cell(Cell *cell){

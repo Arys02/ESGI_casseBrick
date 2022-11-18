@@ -41,6 +41,7 @@ Cell *build_cell(enum kind_cell kc){
             new_cell->is_empty = 1;
             new_cell->is_destructible = 1;
             new_cell->content = NULL;
+            break;
         case UNBREAK:
             new_cell->c = 'x';
             new_cell->is_empty = 0;

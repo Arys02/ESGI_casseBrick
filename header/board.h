@@ -14,7 +14,7 @@
 typedef struct {
     int width;
     int length;
-    Cell **board;
+    Cell ***board;
 
     //let include the players in board for now
     int nb_player;

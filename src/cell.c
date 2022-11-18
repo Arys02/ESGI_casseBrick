@@ -32,26 +32,38 @@ Cell *build_cell(enum kind_cell kc){
             new_cell->c = 'p';
             new_cell->is_empty = 0;
             new_cell->is_destructible = 1;
-            new_cell->content = NULL;
+            break;
+        case BOMB:
+            new_cell->c = '*';
+            new_cell->is_empty = 0;
+            new_cell->is_destructible = 1;
+            break;
+        case OBJECT:
+            new_cell->c = 'o';
+            new_cell->is_empty = 0;
+            new_cell->is_destructible = 1;
             break;
         case WALL:
             new_cell->c = 'w';
             new_cell->is_empty = 0;
             new_cell->is_destructible = 1;
-            new_cell->content = NULL;
             break;
         case VOID:
             new_cell->c = ' ';
             new_cell->is_empty = 1;
             new_cell->is_destructible = 1;
             new_cell->content = NULL;
-        default://should be an unbreakable wall
-            new_cell->c = 'u';
+        case UNBREAK:
+            new_cell->c = 'x';
             new_cell->is_empty = 0;
             new_cell->is_destructible = 0;
-            new_cell->content = NULL;
+            break;
+        default:
             break;
     }
+
+    new_cell->tmp_content = NULL;
+    new_cell->content=NULL;
 
 
     return new_cell;
@@ -59,25 +71,46 @@ Cell *build_cell(enum kind_cell kc){
 void free_cell(Cell *cell){
     free(cell);
 }
-int update_cell(Cell *c, void *new_content, enum kind_cell kc){
-    switch (kc) {
-        case PLAYER:
-            break;
-        case BOMB:
-            break;
-        case OBJECT:
-            break;
-        case WALL:
-            break;
-        case UNBREAK:
-            break;
-        case VOID:
-            break;
 
-    }
-    return 0;
+int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
+     switch(kc) {
+         case PLAYER:
+             cell->c = 'p';
+             cell->is_empty = 0;
+             cell->is_destructible = 1;
+             break;
+         case BOMB:
+             cell->c = '*';
+             cell->is_empty = 0;
+             cell->is_destructible = 1;
+             cell->tmp_content = cell->content;
+             break;
+         case OBJECT:
+             cell->c = 'o';
+             cell->is_empty = 0;
+             cell->is_destructible = 1;
+             break;
+         case WALL:
+             cell->c = 'w';
+             cell->is_empty = 0;
+             cell->is_destructible = 1;
+             break;
+         case VOID:
+             cell->c = ' ';
+             cell->is_empty = 1;
+             cell->is_destructible = 1;
+         case UNBREAK:
+             cell->c = 'x';
+             cell->is_empty = 0;
+             cell->is_destructible = 0;
+             break;
+         default:
+             return 0;
+             break;
+     }
+     cell->content = new_content;
+     return 1;
 }
 char get_char_cell(Cell *cell){
-    //TODO
-    return '0';
+    return cell->c;
 }

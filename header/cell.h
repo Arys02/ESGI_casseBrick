@@ -26,11 +26,12 @@ typedef struct {
     int is_destructible; // 1 if destructible (wall)
     enum kind_cell kind_cell;
     void *content; // can be a Player*, a Bomb* or an Object*
+    void *tmp_content; //only used when a player drop a bomb
 } Cell;
 
 Cell *build_cell(enum kind_cell kc);
 void free_cell(Cell *cell);
-int update_cell(Cell *c, void *new_content, enum kind_cell kc);
+int update_cell(Cell *cell, void *new_content, enum kind_cell kc);
 char get_char_cell(Cell *cell);
 
 #endif //ESGI_CASSEBRICK_CELL_H

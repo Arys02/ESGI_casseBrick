@@ -53,7 +53,19 @@ Board *build_board(int inb_player, Player **p, char *file){
     return new_board;
 }
 void free_board(Board *b){
-    //TODO
+    for(int i = 0; i < b->nb_player; i++){
+        free(b->players[i]);
+    }
+    free(b->players);
+
+    for(int i = 0; i < b->height; i++){
+        for(int j = 0; j < b->width; j++){
+            free(b->board[i][j]);
+        }
+        free(b->board[i]);
+    }
+    free(b->board);
+    free(b);
 }
 
 //switch two cell

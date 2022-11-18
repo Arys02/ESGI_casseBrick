@@ -16,7 +16,7 @@ void print_board_cell(Cell ***board, int width, int height){
 int main() {
     printf("Hello, World!\n");
 
-    board_from_file("../map/map1.map", 9, 5);
+    board_from_file("../map/map_1", 9, 5);
 
     printf("%d\n", DEFAULT_BOMB_QUANTITY);
 

@@ -13,7 +13,7 @@
 
 typedef struct {
     int width;
-    int length;
+    int height;
     Cell ***board;
 
     //let include the players in board for now
@@ -31,6 +31,11 @@ int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y);
 
 //get cell from the board *b
 Cell *get_cell(Board *b, int x, int y);
+void print_board_cell(Cell ***board, int width, int height);
+
+int count_nb_player(Cell ***board, int width, int height);
+
+void fill_player_table(Cell ***board, int width, int height, Player **nb_player, int nb_bomb);
 
 
 #endif //ESGI_CASSEBRICK_BOARD_H

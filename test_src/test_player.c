@@ -5,7 +5,7 @@
 #include "../header/player.h"
 
 int main() {
-    Player *p = build_player("toto", 'a');
+    Player *p = build_player("toto", 'a', 1);
     printf("%s \n", p->name);
     printf("Hello, World!\n");
     free_player(p);

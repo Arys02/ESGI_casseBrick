@@ -31,26 +31,16 @@ Cell ***board_from_file(char *file, int width, int height){
     //getting our reading buffer ready
     char chunk[255];
 
-    //getting first line
+    //skipping first and second line
     if(fgets(chunk, sizeof(chunk), fp) == NULL){
+        fclose(fp);
+        return NULL;
+    }
+    if(fgets(chunk, sizeof(chunk), fp) == NULL){
+        fclose(fp);
         return NULL;
     }
 
-    DEFAULT_BOMB_QUANTITY = atoi(chunk);
-
-    //getting second line size & length
-    if(fgets(chunk, sizeof(chunk), fp) == NULL){
-        return NULL;
-    }
-
-    /*
-    char *first;
-    char *second = strtok_r(chunk, " ", &first);
-
-    int length = atoi(first);
-    int height = atoi(second);
-
-     */
     //BUILDING OUR CELLARRAY
     Cell ***new_array_cell = malloc(sizeof(Cell **) * height);
     for(int x = 0; x < width; x++){
@@ -79,5 +69,6 @@ Cell ***board_from_file(char *file, int width, int height){
         }
         i++;
     }
+    fclose(fp);
     return new_array_cell;
 }

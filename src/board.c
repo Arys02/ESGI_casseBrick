@@ -4,6 +4,16 @@
 
 #include "../header/board.h"
 
+/**
+ * It reads the file, creates a board, fills the board with the cells from the file, and then fills the player table with
+ * the players from the file
+ *
+ * @param inb_player the number of players in the game
+ * @param p the array of players
+ * @param file the file to read from
+ *
+ * @return A pointer to a Board struct
+ */
 Board *build_board(int inb_player, Player **p, char *file){
     //making new board
     Board *new_board = malloc(sizeof (Board));
@@ -52,6 +62,7 @@ Board *build_board(int inb_player, Player **p, char *file){
     fclose(fp);
     return new_board;
 }
+
 void free_board(Board *b){
     for(int i = 0; i < b->nb_player; i++){
         free(b->players[i]);

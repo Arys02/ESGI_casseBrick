@@ -4,6 +4,17 @@
 
 #include "../header/player.h"
 
+
+
+
+/**
+ * It builds a player
+ *
+ * @param name The name of the player
+ * @param symbol The character that will be used to represent the player on the map.
+ *
+ * @return A pointer to a Player struct
+ */
 Player *build_player(char *name, char symbol){
     Player *new_player = malloc(sizeof(Player));
     new_player->Inventory = malloc((sizeof(Bomb*) * MAX_BOMB));
@@ -25,6 +36,11 @@ Player *build_player(char *name, char symbol){
     return new_player;
 }
 
+/**
+ * It frees the memory allocated for the player's inventory and then frees the memory allocated for the player
+ *
+ * @param p The player to be freed
+ */
 void free_player(Player *p){
     for(int i = 0; i < p->bomb_quantity; i++){
         free(p->Inventory[i]);
@@ -32,6 +48,13 @@ void free_player(Player *p){
     free(p);
 }
 
+/**
+ * It updates the player's position
+ *
+ * @param p The player object
+ * @param x The x position of the player
+ * @param y The y coordinate of the player
+ */
 void update_player_pos(Player *p, int x, int y){
     p->pos_x = x;
     p->pos_y = y;

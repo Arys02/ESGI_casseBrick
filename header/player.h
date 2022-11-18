@@ -15,12 +15,31 @@
 #define DEFAULT_BOMB_RANGE 2
 #define DEFAULT_BOMB_QUANTITY 1
 
+
+/* An enumeration of the possible collision types that a player can have with a bomb. */
 enum bomb_collision {
     NONE,
     PASS,
     KICK
 };
 
+
+/**
+ * A player has a name, a symbol, life, bomb range, bomb quantity, position, inventory, heart, immunity clock, and bomb
+ * collision.
+ * @property {char} name - The name of the player
+ * @property {char} symbol - The character that will be displayed on the map.
+ * @property {int} life - the number of lives the player has
+ * @property {int} bomb_range - the range of the bomb
+ * @property {int} bomb_quantity - the number of bombs the player can place at a time
+ * @property {int} pos_x - the x coordinate of the player
+ * @property {int} pos_y - the y coordinate of the player
+ * @property {Bomb} Inventory - An array of pointers to bombs.
+ * @property {int} has_heart - if the player has a heart, he can't be killed by a bomb
+ * @property {int} immunity_clock - This is a clock that counts down to 0. When it reaches 0, the player is no longer
+ * immune to bombs.
+ * @property bc - This is a variable that is used to determine if the player has a collision object with a bomb.
+ */
 typedef struct {
     char *name;
     char symbol;

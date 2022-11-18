@@ -19,7 +19,7 @@
 Player *build_player(char *name, char symbol, int bomb_quantity){
     Player *new_player = malloc(sizeof(Player));
     new_player->Inventory = malloc((sizeof(Bomb*) * MAX_BOMB));
-    for(int i = 0; i < MAX_BOMB; i++){
+    for(int i = 0; i < bomb_quantity; i++){
         new_player->Inventory[i] = build_bomb();
     }
 

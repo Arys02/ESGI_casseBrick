@@ -4,9 +4,37 @@
 
 #include "../header/player.h"
 
-Player *build_player(char *name){
-    //TODO
-    return NULL;
+Player *build_player(char *name, char symbol){
+    Player *new_player = malloc(sizeof(Player));
+    new_player->Inventory = malloc((sizeof(Bomb*) * MAX_BOMB));
+    for(int i = 0; i < MAX_BOMB; i++){
+        new_player->Inventory[i] = build_bomb();
+    }
+
+    new_player->name = name;
+    new_player->symbol = symbol;
+    new_player->life = 1;
+    new_player->bomb_range = DEFAULT_BOMB_RANGE;
+    new_player->bomb_quantity = DEFAULT_BOMB_QUANTITY;
+    new_player->pos_y = -1;
+    new_player->pos_x = -1;
+
+    new_player->has_heart = 0;
+    new_player->immunity_clock = 0;
+    new_player->bc = NONE;
+    return new_player;
+}
+
+void free_player(Player *p){
+    for(int i = 0; i < p->bomb_quantity; i++){
+        free(p->Inventory[i]);
+    }
+    free(p);
+}
+
+void update_player_pos(Player *p, int x, int y){
+    p->pos_x = x;
+    p->pos_y = y;
 }
 //update all clocks from the players (bomb and immunity if it has one)
 void update_clocks_player(Player *p){
@@ -27,9 +55,7 @@ void update_bomb_collision(Player *p, enum bomb_collision bc){
 void get_object_player(Player *p, enum object_type ot){
     //TODO
 }
-void update_player_pos(Player *p, int x, int y){
-    //TODO
-}
+
 void drop_bomb_player(Player *p){
     //TODO
 }

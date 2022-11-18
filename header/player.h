@@ -11,6 +11,10 @@
 #include "object.h"
 #include "bomb.h"
 
+#define MAX_BOMB 10
+#define DEFAULT_BOMB_RANGE 2
+#define DEFAULT_BOMB_QUANTITY 1
+
 enum bomb_collision {
     NONE,
     PASS,
@@ -35,7 +39,9 @@ typedef struct {
 Player;
 
 
-Player *build_player(char *name);
+Player *build_player(char *name, char symbol);
+
+void free_player(Player *p);
 //update all clocks from the players (bomb and immunity if it has one)
 void update_clocks_player(Player *p);
 

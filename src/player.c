@@ -3,6 +3,7 @@
 //
 
 #include "../header/player.h"
+//#include "../header/filereader.h"
 
 
 
@@ -15,7 +16,7 @@
  *
  * @return A pointer to a Player struct
  */
-Player *build_player(char *name, char symbol){
+Player *build_player(char *name, char symbol, int bomb_quantity){
     Player *new_player = malloc(sizeof(Player));
     new_player->Inventory = malloc((sizeof(Bomb*) * MAX_BOMB));
     for(int i = 0; i < MAX_BOMB; i++){
@@ -26,7 +27,7 @@ Player *build_player(char *name, char symbol){
     new_player->symbol = symbol;
     new_player->life = 1;
     new_player->bomb_range = DEFAULT_BOMB_RANGE;
-    new_player->bomb_quantity = DEFAULT_BOMB_QUANTITY;
+    new_player->bomb_quantity = bomb_quantity;
     new_player->pos_y = -1;
     new_player->pos_x = -1;
 

@@ -13,7 +13,6 @@
 
 #define MAX_BOMB 10
 #define DEFAULT_BOMB_RANGE 2
-#define DEFAULT_BOMB_QUANTITY 1
 
 
 /* An enumeration of the possible collision types that a player can have with a bomb. */
@@ -58,7 +57,7 @@ typedef struct {
 Player;
 
 
-Player *build_player(char *name, char symbol);
+Player *build_player(char *name, char symbol, int bomb_quantity);
 
 void free_player(Player *p);
 //update all clocks from the players (bomb and immunity if it has one)

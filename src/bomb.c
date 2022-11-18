@@ -4,14 +4,40 @@
 
 #include "../header/bomb.h"
 
+/**
+ * It creates a new bomb and returns a pointer to it
+ *
+ * @return A pointer to a Bomb struct.
+ */
 Bomb *build_bomb(){
-    //TODO
-    return NULL;
+    Bomb *b = malloc(sizeof(Bomb));
+    b->pos_x = -1;
+    b->pos_y = -1;
+    b->clock = -1;
+    return b;
 }
 void free_bomb(Bomb *b){
-   //TODO
+    free(b);
 }
+/**
+ * It updates the clock of a bomb and returns a status
+ *
+ * @param b the bomb to update
+ *
+ * @return The status of the bomb.
+ */
 enum clock_timer_STATUS update_bomb_clock(Bomb *b){
-    //TODO
-    return INVENTORY;
+    //la clock est déjà à -1, la bombe est dans l'inventaire
+    if (b->clock == -1)
+        return INVENTORY;
+    //la bombe n'est pas dans l'inventaire la clock descend
+    b->clock--;
+    switch(b->clock){
+        case -1:
+            return INVENTORY;
+        case 0:
+            return BOOM;
+        default:
+            return TIC_TAC;
+    }
 }

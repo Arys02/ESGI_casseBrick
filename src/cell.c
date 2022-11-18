@@ -4,26 +4,14 @@
 
 #include "../header/cell.h"
 
+
 /**
+ * It builds a cell
  *
+ * @param kc the kind of cell you want to build
  *
-enum kind_cell {
-    PLAYER,
-    BOMB,
-    OBJECT,
-    WALL,
-    VOID
-};
-
-typedef struct {
-    char c;
-    int is_empty; // 1 if empty, 0 if not
-    int is_destructible; // 1 if destructible (wall)
-    enum kind_cell kind_cell;
-    void *content; // can be a Player*, a Bomb* or an Object*
-} Cell;
- * */
-
+ * @return A pointer to a cell
+ */
 Cell *build_cell(enum kind_cell kc){
     Cell *new_cell = malloc(sizeof(Cell));
     new_cell->kind_cell = kc;
@@ -68,10 +56,25 @@ Cell *build_cell(enum kind_cell kc){
 
     return new_cell;
 }
+
+/**
+ * It frees the memory allocated to a cell
+ *
+ * @param cell The cell to free.
+ */
 void free_cell(Cell *cell){
     free(cell);
 }
 
+/**
+ * It updates the cell's content, and changes the cell's properties according to the kind of cell
+ *
+ * @param cell the cell to update
+ * @param new_content the new content of the cell
+ * @param kc Kind of cell, which is an enum.
+ *
+ * @return an integer.
+ */
 int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
      switch(kc) {
          case PLAYER:
@@ -111,6 +114,14 @@ int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
      cell->content = new_content;
      return 1;
 }
+
+/**
+ * Get_char_cell returns the char value of a cell.
+ *
+ * @param cell The cell to get the character from.
+ *
+ * @return A character.
+ */
 char get_char_cell(Cell *cell){
     return cell->c;
 }

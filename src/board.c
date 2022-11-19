@@ -97,9 +97,6 @@ int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y){
 
     outside_board(&dst_x, &dst_y, b);
 
-    if(b->board[src_x][src_y]->tmp_content != NULL){
-        //normally bomb here
-    }
     Cell *tmp1 = get_cell(b, src_x, src_y);
     if (tmp1 && get_cell(b, dst_x, dst_y)){
         b->board[src_x][src_y] = b->board[dst_x][dst_y];

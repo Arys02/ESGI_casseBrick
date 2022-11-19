@@ -92,7 +92,7 @@ int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
              break;
          case OBJECT:
              cell->c = 'o';
-             cell->is_empty = 1;
+             cell->is_empty = 0;
              cell->is_destructible = 1;
              break;
          case WALL:

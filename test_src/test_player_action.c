@@ -15,7 +15,7 @@ int main() {
     while(1){
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         print_board_cell(b->board, b->width, b->height);
-        int frappe;
+        int frappe = 'e';
         if(kbhit())
         {
             frappe=getch();
@@ -23,20 +23,23 @@ int main() {
                 break;
             }
              if (frappe == 'p'){
-                 printf("\n p pressed \n");
-                 player_move_up(b->players[0], b);
+                 printf("\n UP \n");
+                 player_move(b->players[0], b, UP);
             }
               if (frappe == 'e'){
-                 printf("\n e pressed \n");
-                 player_move_right(b->players[0], b);
+                 printf("\n RIGHT \n");
+                 player_move(b->players[0], b, RIGHT);
+                // player_move_right(b->players[0], b);
             }
               if (frappe == 'u'){
-                 printf("\n u pressed \n");
-                 player_move_left(b->players[0], b);
+                 printf("\n LEFT \n");
+                  player_move(b->players[0], b, LEFT);
+                 //player_move_left(b->players[0], b);
             }
               if (frappe == 'i'){
-                 printf("\n i pressed \n");
-                 player_move_down(b->players[0], b);
+                 printf("\n DOWN \n");
+                  player_move(b->players[0], b, DOWN);
+                 //player_move_down(b->players[0], b);
             }
         }
         //Sleep(500);

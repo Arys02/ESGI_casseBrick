@@ -233,7 +233,7 @@ void explosions_timer_all(int x, int y, Board *board, int exp_size){
     explosions_timer_right(x, y + 1, board, exp_size);
     explosions_timer_up(x - 1, y , board, exp_size);
     explosions_timer_down(x + 1, y, board, exp_size);
-
+    board->board[x][y]->clock = TIMER;
 }
 
 /**
@@ -351,19 +351,28 @@ void update_all_clock(Board *b){
                 if(b->board[i][j]->clock == 0){
                     printf("EXPLOSION");
 
+                    //BREAK THE WALL
                     if(b->board[i][j]->kind_cell == WALL){
-                        update_cell(b->board[i][j], NULL, VOID);
+                        enum object_type *ot = get_rand_ot();
+                        update_cell(b->board[i][j], ot, OBJECT);
 
                     }
+                    //KILL THE PLAYER
                     if(b->board[i][j]->kind_cell == PLAYER){
                         if(((Player *)b->board[i][j]->content)->kp ==GAMER){
                             //PERDU
+                            //exit(1);
                             //TODO
                         }
                         else{
                             ((Player *)b->board[i][j]->content)->is_dead = 1;
                         }
 
+                        update_cell(b->board[i][j], NULL, VOID);
+                    }
+                    //THE BOMB DISAPEAR
+                    if (b->board[i][j]->kind_cell == BOMB){
+                        ((Bomb*)b->board[i][j]->content)->clock = -1; // the bomb return in the inventory
                         update_cell(b->board[i][j], NULL, VOID);
                     }
                 }

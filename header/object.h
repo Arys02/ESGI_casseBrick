@@ -18,4 +18,6 @@ enum object_type{
     HP_UP
 };
 
+enum object_type *get_rand_ot();
+
 #endif //ESGI_CASSEBRICK_OBJECT_H

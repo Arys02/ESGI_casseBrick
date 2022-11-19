@@ -11,6 +11,7 @@
 
 int main() {
     Board *b = build_board(1, NULL, "../map/map_3_collision");
+    /*
     drop_bomb_player(b->players[0], b);
     update_all_clock(b);
     print_board_cell(b->board, b->width, b->height);
@@ -19,14 +20,15 @@ int main() {
     print_board_cell(b->board, b->width, b->height);
     printf("\n");
     update_all_clock(b);
-    player_move(b->players[0], b, LEFT);
+    player_move(b->players[0], b, RIGHT);
     print_board_cell(b->board, b->width, b->height);
     printf("\n");
     update_all_clock(b);
-    player_move(b->players[0], b, LEFT);
+    player_move(b->players[0], b, RIGHT);
     print_board_cell(b->board, b->width, b->height);
     printf("\n");
     update_all_clock(b);
+    return 1;
     player_move(b->players[0], b, RIGHT);
     print_board_cell(b->board, b->width, b->height);
     printf("\n");
@@ -37,12 +39,12 @@ int main() {
     update_all_clock(b);
     print_board_cell(b->board, b->width, b->height);
     return 1;
+     */
 
     while(1){
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         print_board_cell(b->board, b->width, b->height);
         int frappe = 'e';
-
 
         //if(kbhit())
         {
@@ -75,6 +77,8 @@ int main() {
         //Sleep(500);
         //usleep(500 * 1000);
 
+
+        update_all_clock(b);
         printf("\n\n");
 
 

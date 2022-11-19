@@ -6,6 +6,7 @@
 #define ESGI_CASSEBRICK_PLAYER_ACTION_H
 #include "player.h"
 #include "board.h"
+#include "object.h"
 
 enum direction {
     UP,

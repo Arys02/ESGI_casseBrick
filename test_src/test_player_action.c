@@ -4,7 +4,9 @@
 
 #include <stdio.h>
 #include <conio.h>
+#include <pthread_time.h>
 #include <unistd.h>
+//#include <windows.h>
 #include "../header/player_action.h"
 
 int main() {
@@ -21,9 +23,23 @@ int main() {
             }
              if (frappe == 'p'){
                  printf("\n p pressed \n");
+                 player_move_up(b->players[0], b);
+            }
+              if (frappe == 'e'){
+                 printf("\n e pressed \n");
+                 player_move_right(b->players[0], b);
+            }
+              if (frappe == 'u'){
+                 printf("\n u pressed \n");
+                 player_move_left(b->players[0], b);
+            }
+              if (frappe == 'i'){
+                 printf("\n i pressed \n");
+                 player_move_down(b->players[0], b);
             }
         }
-        sleep(1);
+        //Sleep(500);
+        usleep(500 * 1000);
 
         printf("\n\n");
 

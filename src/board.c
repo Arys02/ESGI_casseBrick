@@ -94,15 +94,11 @@ void free_board(Board *b){
  * @return A pointer to a cell
  */
 int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y){
-    if (dst_x < 0 || dst_x >=  b->height || dst_y < 0 || dst_y >= b->width){
-        if (dst_x < 0)
-            dst_x = b->height - 1;
-        if (dst_x >= b->height)
-            dst_x = 0;
-        if (dst_y < 0)
-            dst_y = b->width - 1;
-        if (dst_y >= b->width)
-            dst_y = 0;
+
+    outside_board(&dst_x, &dst_y, b);
+
+    if(b->board[src_x][src_y]->tmp_content != NULL){
+        //normally bomb here
     }
     Cell *tmp1 = get_cell(b, src_x, src_y);
     if (tmp1 && get_cell(b, dst_x, dst_y)){
@@ -113,7 +109,7 @@ int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y){
     return 0;
 }
 
-//get cell from the board *b
+
 /**
  * It returns a pointer to the cell at the given coordinates, or NULL if the coordinates are out of bounds
  *
@@ -196,6 +192,13 @@ void print_board_cell(Cell ***board, int width, int height){
     }
 }
 
+/**
+ * If the destination is outside the board, then set the destination to the opposite side of the board
+ *
+ * @param dst_x the x coordinate of the destination
+ * @param dst_y the y coordinate of the destination
+ * @param b the board
+ */
 void outside_board(int *dst_x, int *dst_y, Board *b){
     if (*dst_x < 0 || *dst_x >=  b->height || *dst_y < 0 || *dst_y >= b->width){
         if (*dst_x < 0)

@@ -23,7 +23,7 @@ enum bomb_collision {
 };
 
 enum kind_player{
-    PLAYER,
+    GAMER,
     IA
 };
 

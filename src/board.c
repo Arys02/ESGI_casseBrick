@@ -155,12 +155,19 @@ int count_nb_player(Cell ***board, int width, int height){
  */
 void fill_player_table(Cell ***board, int width, int height, Player **nb_player, int nb_bomb){
     int x = 0;
+    int first = 0;
     for (int i = 0; i < height; i++){
         for (int j = 0; j <width; j++){
             if (board[i][j]->kind_cell == PLAYER){
                 char pname[256];
                 itoa(x, pname, 10);
                 nb_player[x] = build_player(pname, pname[0], nb_bomb);
+                if (first == 0){
+                    nb_player[x]->kp = GAMER;
+                    first = 1;
+                }else{
+                    nb_player[x]->kp = IA;
+                }
                 update_player_pos(nb_player[x], i, j);
                 x++;
             }
@@ -301,7 +308,7 @@ void update_all_clock(Board *b){
                         update_cell(b->board[i][j], NULL, VOID);
                     }
                     if(b->board[i][j]->kind_cell == PLAYER){
-                        //if(b->board)
+                        if(b->board)
                         //TODO check for defeat for player
 
                         update_cell(b->board[i][j], NULL, VOID);

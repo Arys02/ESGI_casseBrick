@@ -6,7 +6,7 @@
 #define ESGI_CASSEBRICK_BOMB_H
 #include <stdlib.h>
 
-#define TIMER 10
+#define TIMER 3
 
 enum clock_timer_STATUS {
     BOOM,
@@ -24,5 +24,7 @@ Bomb *build_bomb();
 void drop_bomb_init(Bomb *b, int x, int y);
 void free_bomb(Bomb *b);
 enum clock_timer_STATUS update_bomb_clock(Bomb *b);
+
+
 
 #endif //ESGI_CASSEBRICK_BOMB_H

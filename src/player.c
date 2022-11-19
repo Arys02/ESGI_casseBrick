@@ -69,6 +69,7 @@ void update_clocks_player(Player *p){
         switch (bomb_status) {
             case BOOM:
                 printf("BOOM\n");
+
                 //TODO explosion here ?
                 break;
             case TIC_TAC:

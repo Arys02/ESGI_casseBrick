@@ -12,7 +12,7 @@
 #include "bomb.h"
 
 #define MAX_BOMB 10
-#define DEFAULT_BOMB_RANGE 2
+#define DEFAULT_BOMB_RANGE 4
 
 
 /* An enumeration of the possible collision types that a player can have with a bomb. */

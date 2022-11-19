@@ -209,3 +209,107 @@ void outside_board(int *dst_x, int *dst_y, Board *b){
     }
 
 }
+
+
+
+void explosions_timer_all(int x, int y, Board *board, int exp_size){
+    explosions_timer_left(x, y - 1, board, exp_size);
+    explosions_timer_right(x, y + 1, board, exp_size);
+    explosions_timer_up(x - 1, y , board, exp_size);
+    explosions_timer_down(x + 1, y, board, exp_size);
+
+}
+
+void explosions_timer_left(int x, int y, Board *board, int exp_size){
+   //explode left
+   int count = 0;
+   while(board->board[x][y]->kind_cell != WALL && board->board[x][y]->kind_cell != UNBREAK){
+       outside_board(&x, &y, board);
+
+       board->board[x][y]->clock = TIMER;
+       y--;
+        count++;
+        if(count >= exp_size)
+            break;
+   };
+   if(board->board[x][y]->kind_cell == WALL){
+       board->board[x][y]->clock = TIMER;
+   }
+}
+
+void explosions_timer_right(int x, int y, Board *board, int exp_size){
+    //explode left
+    int count = 0;
+    while(board->board[x][y]->kind_cell != WALL && board->board[x][y]->kind_cell != UNBREAK){
+        outside_board(&x, &y, board);
+
+        board->board[x][y]->clock = TIMER;
+        y++;
+        count++;
+        if(count >= exp_size)
+            break;
+    };
+    if(board->board[x][y]->kind_cell == WALL){
+        board->board[x][y]->clock = TIMER;
+    }
+}
+
+void explosions_timer_up(int x, int y, Board *board, int exp_size){
+    //explode left
+    int count = 0;
+    while(board->board[x][y]->kind_cell != WALL && board->board[x][y]->kind_cell != UNBREAK){
+        outside_board(&x, &y, board);
+
+        board->board[x][y]->clock = TIMER;
+        x--;
+        count++;
+        if(count >= exp_size)
+            break;
+    };
+    if(board->board[x][y]->kind_cell == WALL){
+        board->board[x][y]->clock = TIMER;
+    }
+}
+
+
+void explosions_timer_down(int x, int y, Board *board, int exp_size){
+    //explode left
+    int count = 0;
+    while(board->board[x][y]->kind_cell != WALL && board->board[x][y]->kind_cell != UNBREAK){
+        outside_board(&x, &y, board);
+
+        board->board[x][y]->clock = TIMER;
+        x++;
+        count++;
+        if(count >= exp_size)
+            break;
+    };
+    if(board->board[x][y]->kind_cell == WALL){
+        board->board[x][y]->clock = TIMER;
+    }
+}
+
+void update_all_clock(Board *b){
+    for(int i = 0; i < b->height; i++){
+        for(int j = 0; j < b->width; j++){
+            if (b->board[i][j]->clock > -1){
+                b->board[i][j]->clock--;
+                if(b->board[i][j]->clock == 0){
+                    printf("EXPLOSION");
+
+                    if(b->board[i][j]->kind_cell == WALL){
+                        update_cell(b->board[i][j], NULL, VOID);
+                    }
+                    if(b->board[i][j]->kind_cell == PLAYER){
+                        //if(b->board)
+                        //TODO check for defeat for player
+
+                        update_cell(b->board[i][j], NULL, VOID);
+                    }
+                }
+
+            }
+        }
+    }
+   printf("\n") ;
+}

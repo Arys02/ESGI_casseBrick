@@ -40,6 +40,14 @@ void fill_player_table(Cell ***board, int width, int height, Player **nb_player,
 
 void outside_board(int *dst_x, int *dst_y, Board *b);
 
+void explosions_timer_left(int x, int y, Board *board, int exp_size);
+void explosions_timer_right(int x, int y, Board *board, int exp_size);
+void explosions_timer_up(int x, int y, Board *board, int exp_size);
+void explosions_timer_down(int x, int y, Board *board, int exp_size);
+void explosions_timer_all(int x, int y, Board *board, int exp_size);
+
+void update_all_clock(Board *b);
+
 
 
 #endif //ESGI_CASSEBRICK_BOARD_H

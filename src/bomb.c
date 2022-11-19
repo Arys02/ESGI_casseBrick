@@ -48,3 +48,4 @@ void drop_bomb_init(Bomb *b, int x, int y){
     b->pos_y = y;
     b->pos_x = x;
 }
+

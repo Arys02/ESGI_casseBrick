@@ -11,6 +11,9 @@ void drop_bomb_player(Player *p, Board *b){
         if(p->Inventory[i]->clock == -1){
             drop_bomb_init(p->Inventory[i], p->pos_x, p->pos_y);
             b->board[p->pos_x][p->pos_y]->tmp_content = p->Inventory[i];
+
+            explosions_timer_all(p->pos_x, p->pos_y, b, p->bomb_range);
+
             break;
 
         }

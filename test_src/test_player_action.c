@@ -11,15 +11,32 @@
 
 int main() {
     Board *b = build_board(1, NULL, "../map/map_3_collision");
-    /*
-    player_move(b->players[0], b, RIGHT);
     drop_bomb_player(b->players[0], b);
+    update_all_clock(b);
+    print_board_cell(b->board, b->width, b->height);
+    printf("\n");
     player_move(b->players[0], b, RIGHT);
-    player_move(b->players[0], b, LEFT);
+    print_board_cell(b->board, b->width, b->height);
+    printf("\n");
+    update_all_clock(b);
     player_move(b->players[0], b, LEFT);
     print_board_cell(b->board, b->width, b->height);
+    printf("\n");
+    update_all_clock(b);
+    player_move(b->players[0], b, LEFT);
+    print_board_cell(b->board, b->width, b->height);
+    printf("\n");
+    update_all_clock(b);
+    player_move(b->players[0], b, RIGHT);
+    print_board_cell(b->board, b->width, b->height);
+    printf("\n");
+    update_all_clock(b);
+    player_move(b->players[0], b, RIGHT);
+    print_board_cell(b->board, b->width, b->height);
+    printf("\n");
+    update_all_clock(b);
+    print_board_cell(b->board, b->width, b->height);
     return 1;
-     */
 
     while(1){
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");

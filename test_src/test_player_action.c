@@ -16,7 +16,8 @@ int main() {
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         print_board_cell(b->board, b->width, b->height);
         int frappe;
-        if(kbhit()){
+        if(kbhit())
+        {
             frappe=getch();
             if (frappe == 'b'){
                 break;

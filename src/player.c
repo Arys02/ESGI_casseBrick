@@ -34,6 +34,7 @@ Player *build_player(char *name, char symbol, int bomb_quantity){
     new_player->has_heart = 0;
     new_player->immunity_clock = 0;
     new_player->bc = NONE;
+    new_player->is_dead = 0;
     return new_player;
 }
 

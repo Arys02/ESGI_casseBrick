@@ -22,6 +22,11 @@ enum bomb_collision {
     KICK
 };
 
+enum kind_player{
+    PLAYER,
+    IA
+};
+
 
 /**
  * A player has a name, a symbol, life, bomb range, bomb quantity, position, inventory, heart, immunity clock, and bomb
@@ -53,6 +58,8 @@ typedef struct {
     int has_heart;
     int immunity_clock;
     enum bomb_collision bc;
+    enum kind_player kp;
+    int is_dead;
 }
 Player;
 

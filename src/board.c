@@ -94,6 +94,16 @@ void free_board(Board *b){
  * @return A pointer to a cell
  */
 int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y){
+    if (dst_x < 0 || dst_x >=  b->height || dst_y < 0 || dst_y >= b->width){
+        if (dst_x < 0)
+            dst_x = b->height - 1;
+        if (dst_x >= b->height)
+            dst_x = 0;
+        if (dst_y < 0)
+            dst_y = b->width - 1;
+        if (dst_y >= b->width)
+            dst_y = 0;
+    }
     Cell *tmp1 = get_cell(b, src_x, src_y);
     if (tmp1 && get_cell(b, dst_x, dst_y)){
         b->board[src_x][src_y] = b->board[dst_x][dst_y];
@@ -114,8 +124,10 @@ int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y){
  * @return A pointer to a Cell
  */
 Cell *get_cell(Board *b, int x, int y){
-    if (x < 0 || x >=  b->height || y < 0 || y >= b->width)
+    if (x < 0 || x >=  b->height || y < 0 || y >= b->width){
         return NULL;
+    }
+
     return b->board[x][y];
 }
 
@@ -175,8 +187,25 @@ void print_board_cell(Cell ***board, int width, int height){
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             Cell *c = board[i][j];
+            if (c->kind_cell == PLAYER){
+                //SDL.PRINT[RED SQUARE]
+            }
             printf("%c", board[i][j]->c);
         }
         printf("\n");
     }
+}
+
+void outside_board(int *dst_x, int *dst_y, Board *b){
+    if (*dst_x < 0 || *dst_x >=  b->height || *dst_y < 0 || *dst_y >= b->width){
+        if (*dst_x < 0)
+            *dst_x = b->height - 1;
+        if (*dst_x >= b->height)
+            *dst_x = 0;
+        if (*dst_y < 0)
+            *dst_y = b->width - 1;
+        if (*dst_y >= b->width)
+            *dst_y = 0;
+    }
+
 }

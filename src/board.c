@@ -56,13 +56,15 @@ Board *build_board(int inb_player, Player **p, char *file){
 
     fill_player_table(new_board->board, new_board->width, new_board->height, new_board->players, nb_bomb);
 
-
-
-
     fclose(fp);
     return new_board;
 }
 
+/**
+ * It frees the memory allocated for the board
+ *
+ * @param b the board
+ */
 void free_board(Board *b){
     for(int i = 0; i < b->nb_player; i++){
         free(b->players[i]);
@@ -80,17 +82,52 @@ void free_board(Board *b){
 }
 
 //switch two cell
+/**
+ * It switches the contents of two cells
+ *
+ * @param b The board
+ * @param src_x The x coordinate of the source cell
+ * @param src_y The y coordinate of the source cell
+ * @param dst_x The x coordinate of the destination cell
+ * @param dst_y The y coordinate of the destination cell
+ *
+ * @return A pointer to a cell
+ */
 int switch_cell(Board *b, int src_x, int src_y, int dst_x, int dst_y){
-    //TODO
+    Cell *tmp1 = get_cell(b, src_x, src_y);
+    if (tmp1 && get_cell(b, dst_x, dst_y)){
+        b->board[src_x][src_y] = b->board[dst_x][dst_y];
+        b->board[dst_x][dst_y] = tmp1;
+        return 1;
+    }
     return 0;
 }
 
 //get cell from the board *b
+/**
+ * It returns a pointer to the cell at the given coordinates, or NULL if the coordinates are out of bounds
+ *
+ * @param b The board
+ * @param x The x coordinate of the cell you want to get.
+ * @param y the y coordinate of the cell
+ *
+ * @return A pointer to a Cell
+ */
 Cell *get_cell(Board *b, int x, int y){
-    //TODO
-    return NULL;
+    if (x < 0 || x >=  b->height || y < 0 || y >= b->width)
+        return NULL;
+    return b->board[x][y];
 }
 
+/**
+ * It counts the number of players on the board
+ *
+ * @param board the board
+ * @param width the width of the board
+ * @param height the height of the board
+ *
+ * @return The number of players on the board.
+ */
 int count_nb_player(Cell ***board, int width, int height){
      int count = 0;
     for(int i = 0; i < height; i++){
@@ -102,6 +139,15 @@ int count_nb_player(Cell ***board, int width, int height){
     return count;
 }
 
+/**
+ * It fills the player table with the players found on the board
+ *
+ * @param board the board
+ * @param width the width of the board
+ * @param height the height of the board
+ * @param nb_player the array of players
+ * @param nb_bomb the number of bombs the player can place
+ */
 void fill_player_table(Cell ***board, int width, int height, Player **nb_player, int nb_bomb){
     int x = 0;
     for (int i = 0; i < height; i++){
@@ -118,6 +164,13 @@ void fill_player_table(Cell ***board, int width, int height, Player **nb_player,
 
 }
 
+/**
+ * It prints the board
+ *
+ * @param board the board
+ * @param width the width of the board
+ * @param height the height of the board
+ */
 void print_board_cell(Cell ***board, int width, int height){
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){

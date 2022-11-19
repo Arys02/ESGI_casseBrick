@@ -219,6 +219,15 @@ void outside_board(int *dst_x, int *dst_y, Board *b){
 
 
 
+/**
+ * It takes in a position, a board, and an explosion size, and then calls the other explosion timer functions on the four
+ * directions
+ *
+ * @param x x coordinate of the explosion
+ * @param y the y coordinate of the explosion
+ * @param board the board that the explosion is on
+ * @param exp_size the size of the explosion
+ */
 void explosions_timer_all(int x, int y, Board *board, int exp_size){
     explosions_timer_left(x, y - 1, board, exp_size);
     explosions_timer_right(x, y + 1, board, exp_size);
@@ -227,6 +236,14 @@ void explosions_timer_all(int x, int y, Board *board, int exp_size){
 
 }
 
+/**
+ * It set the timer for explosion in every direction
+ *
+ * @param x x coordinate of the bomb
+ * @param y the y coordinate of the bomb
+ * @param board the board
+ * @param exp_size the size of the explosion
+ */
 void explosions_timer_left(int x, int y, Board *board, int exp_size){
    //explode left
    int count = 0;
@@ -244,6 +261,14 @@ void explosions_timer_left(int x, int y, Board *board, int exp_size){
    }
 }
 
+/**
+ * It explodes the bomb in the right direction
+ *
+ * @param x x coordinate of the bomb
+ * @param y the y coordinate of the bomb
+ * @param board the board
+ * @param exp_size the size of the explosion
+ */
 void explosions_timer_right(int x, int y, Board *board, int exp_size){
     //explode left
     int count = 0;
@@ -261,6 +286,14 @@ void explosions_timer_right(int x, int y, Board *board, int exp_size){
     }
 }
 
+/**
+ * It checks if the cell is a wall or unbreakable block, if it is, it sets the timer to the value of the constant TIMER
+ *
+ * @param x the x coordinate of the bomb
+ * @param y the y coordinate of the bomb
+ * @param board the board
+ * @param exp_size the size of the explosion
+ */
 void explosions_timer_up(int x, int y, Board *board, int exp_size){
     //explode left
     int count = 0;
@@ -279,6 +312,15 @@ void explosions_timer_up(int x, int y, Board *board, int exp_size){
 }
 
 
+/**
+ * It takes in the x and y coordinates of the bomb, the board, and the explosion size, and then it explodes the bomb to the
+ * left
+ *
+ * @param x x coordinate of the bomb
+ * @param y the y coordinate of the bomb
+ * @param board the board
+ * @param exp_size the size of the explosion
+ */
 void explosions_timer_down(int x, int y, Board *board, int exp_size){
     //explode left
     int count = 0;
@@ -296,6 +338,11 @@ void explosions_timer_down(int x, int y, Board *board, int exp_size){
     }
 }
 
+/**
+ * It updates the clock of all the cells of the board
+ * and manage explosion, kills player and break walls
+ * @param b the board
+ */
 void update_all_clock(Board *b){
     for(int i = 0; i < b->height; i++){
         for(int j = 0; j < b->width; j++){
@@ -306,10 +353,16 @@ void update_all_clock(Board *b){
 
                     if(b->board[i][j]->kind_cell == WALL){
                         update_cell(b->board[i][j], NULL, VOID);
+
                     }
                     if(b->board[i][j]->kind_cell == PLAYER){
-                        if(b->board)
-                        //TODO check for defeat for player
+                        if(((Player *)b->board[i][j]->content)->kp ==GAMER){
+                            //PERDU
+                            //TODO
+                        }
+                        else{
+                            ((Player *)b->board[i][j]->content)->is_dead = 1;
+                        }
 
                         update_cell(b->board[i][j], NULL, VOID);
                     }

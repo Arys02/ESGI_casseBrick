@@ -6,9 +6,24 @@
 
 
 void drop_bomb_player(Player *p, Board *b){
-    //TODO
+    for(int i = 0; i < p->bomb_quantity; i++){
+        //the first bomb on inventory
+        if(p->Inventory[i]->clock == -1){
+            drop_bomb_init(p->Inventory[i], p->pos_x, p->pos_y);
+            b->board[p->pos_x][p->pos_y]->tmp_content = p->Inventory[i];
+            break;
+
+        }
+    }
 }
 
+/**
+ * It moves the player in the given direction, if possible
+ *
+ * @param p the player
+ * @param b the board
+ * @param dir the direction the player wants to move in
+ */
 void player_move(Player *p, Board *b, enum direction dir){
     int dst_x = p->pos_x;
     int dst_y = p->pos_y;
@@ -35,7 +50,7 @@ void player_move(Player *p, Board *b, enum direction dir){
     //if next cell is empty no pb, just switch
     if (b->board[dst_x][dst_y]->kind_cell == VOID) {
         moved = 1;
-        switch_cell(b, p->pos_x, p->pos_y, dst_x, dst_y);
+        update_cell(b->board[dst_x][dst_y], p, PLAYER);
         update_player_pos(p, dst_x, dst_y);
     }
 
@@ -43,12 +58,12 @@ void player_move(Player *p, Board *b, enum direction dir){
     //if next case is a bomb
     if (b->board[dst_x][dst_y]->kind_cell == BOMB){
         if (p->bc == PASS) {
-            moved = 1;
+            //moved = 1;
             //TODO
             //se superpose
         }
         if (p->bc == KICK){
-            moved = 1;
+            //moved = 1;
             //TODO
             //kick la bombe
         }
@@ -64,46 +79,9 @@ void player_move(Player *p, Board *b, enum direction dir){
             update_cell(b->board[src_x][src_y],b->board[src_x][src_y]->tmp_content, BOMB);
             b->board[src_x][src_y]->tmp_content = NULL;
         }
+        else {
+            update_cell(b->board[src_x][src_y], NULL, VOID);
+        }
     }
 
-}
-
-
-void player_move_up(Player *p, Board *b){
-    int dst_x = p->pos_x - 1;
-    int dst_y = p->pos_y;
-
-    outside_board(&dst_x, &dst_y, b);
-
-    switch_cell(b, p->pos_x, p->pos_y, dst_x, dst_y);
-    update_player_pos(p, dst_x, dst_y);
-}
-void player_move_down(Player *p, Board *b){
-    int dst_x = p->pos_x + 1;
-    int dst_y = p->pos_y;
-
-    outside_board(&dst_x, &dst_y, b);
-
-    switch_cell(b, p->pos_x, p->pos_y, dst_x, dst_y);
-    update_player_pos(p, dst_x, dst_y);
-
-}
-void player_move_right(Player *p, Board *b){
-    int dst_x = p->pos_x;
-    int dst_y = p->pos_y + 1;
-
-    outside_board(&dst_x, &dst_y, b);
-
-    switch_cell(b, p->pos_x, p->pos_y, dst_x, dst_y);
-    update_player_pos(p, dst_x, dst_y);
-}
-
-void player_move_left(Player *p, Board *b){
-    int dst_x = p->pos_x;
-    int dst_y = p->pos_y - 1;
-
-    outside_board(&dst_x, &dst_y, b);
-
-    switch_cell(b, p->pos_x, p->pos_y, dst_x, dst_y);
-    update_player_pos(p, dst_x, dst_y);
 }

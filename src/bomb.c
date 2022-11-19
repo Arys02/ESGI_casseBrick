@@ -31,6 +31,7 @@ enum clock_timer_STATUS update_bomb_clock(Bomb *b){
     if (b->clock == -1)
         return INVENTORY;
     //la bombe n'est pas dans l'inventaire la clock descend
+
     b->clock--;
     switch(b->clock){
         case -1:

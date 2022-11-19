@@ -62,7 +62,22 @@ void update_player_pos(Player *p, int x, int y){
 }
 //update all clocks from the players (bomb and immunity if it has one)
 void update_clocks_player(Player *p){
-    //TODO
+    if (p->immunity_clock > 0)
+        p->immunity_clock--;
+    for(int i = 0; i < p->bomb_quantity; i++){
+        enum clock_timer_STATUS bomb_status = update_bomb_clock(p->Inventory[i]);
+        switch (bomb_status) {
+            case BOOM:
+                printf("BOOM\n");
+                //TODO explosion here ?
+                break;
+            case TIC_TAC:
+                printf("TIC-TAC\n");
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void update_bomb_range_player(Player *p, int new_value){
@@ -80,6 +95,5 @@ void get_object_player(Player *p, enum object_type ot){
     //TODO
 }
 
-void drop_bomb_player(Player *p){
-    //TODO
-}
+
+

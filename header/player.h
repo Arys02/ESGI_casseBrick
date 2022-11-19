@@ -56,7 +56,6 @@ typedef struct {
 }
 Player;
 
-
 Player *build_player(char *name, char symbol, int bomb_quantity);
 
 void free_player(Player *p);
@@ -69,7 +68,6 @@ void update_bomb_collision(Player *p, enum bomb_collision);
 
 void get_object_player(Player *p, enum object_type);
 void update_player_pos(Player *p, int x, int y);
-void drop_bomb_player(Player *p);
 
 
 

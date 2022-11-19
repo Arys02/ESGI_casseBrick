@@ -39,6 +39,8 @@ typedef struct {
     enum kind_cell kind_cell;
     void *content; // can be a Player*, a Bomb* or an Object*
     void *tmp_content; //only used when a player drop a bomb
+    int clock; //clock to manage explosion -1 when no explosion is expected
+
 } Cell;
 
 Cell *build_cell(enum kind_cell kc);

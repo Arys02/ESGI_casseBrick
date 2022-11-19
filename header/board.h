@@ -38,4 +38,6 @@ int count_nb_player(Cell ***board, int width, int height);
 void fill_player_table(Cell ***board, int width, int height, Player **nb_player, int nb_bomb);
 
 
+
+
 #endif //ESGI_CASSEBRICK_BOARD_H

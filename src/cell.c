@@ -51,6 +51,7 @@ Cell *build_cell(enum kind_cell kc){
             break;
     }
 
+    new_cell->clock = -1;
     new_cell->tmp_content = NULL;
     new_cell->content=NULL;
 
@@ -84,7 +85,7 @@ int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
              cell->is_destructible = 1;
              break;
          case BOMB:
-             cell->c = '*';
+             cell->c = 'b';
              cell->is_empty = 0;
              cell->is_destructible = 1;
              cell->tmp_content = cell->content;

@@ -42,3 +42,9 @@ enum clock_timer_STATUS update_bomb_clock(Bomb *b){
             return TIC_TAC;
     }
 }
+
+void drop_bomb_init(Bomb *b, int x, int y){
+    b->clock = TIMER;
+    b->pos_y = y;
+    b->pos_x = x;
+}

@@ -88,7 +88,6 @@ int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
              cell->c = 'b';
              cell->is_empty = 0;
              cell->is_destructible = 1;
-             cell->tmp_content = cell->content;
              break;
          case OBJECT:
              cell->c = 'o';
@@ -104,6 +103,7 @@ int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
              cell->c = ' ';
              cell->is_empty = 1;
              cell->is_destructible = 1;
+             break;
          case UNBREAK:
              cell->c = 'x';
              cell->is_empty = 0;
@@ -111,8 +111,8 @@ int update_cell(Cell *cell, void *new_content, enum kind_cell kc){
              break;
          default:
              return 0;
-             break;
      }
+     cell->kind_cell = kc;
      cell->content = new_content;
      return 1;
 }

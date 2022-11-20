@@ -165,7 +165,7 @@ int move_next_move(Player *p, Board *b){
 void ia_move(Player *p, Board *b){
     enum direction dir = get_next_move(p);
     if (dir != NONE_D){ //still has move to do
-        printf("already a road to follow %d\n", dir);
+        //printf("already a road to follow %d\n", dir);
         player_move(p, b, dir);
         return;
     }
@@ -174,7 +174,7 @@ void ia_move(Player *p, Board *b){
     if (current_cell->clock > 0 && current_cell->clock < 6){
         p->path = get_move_queue(p, b);
         move_next_move(p, b);
-        printf("danger let's find le next move\n");
+        //printf("danger let's find le next move\n");
         return;
         //danger
         //defensive move
@@ -184,7 +184,7 @@ void ia_move(Player *p, Board *b){
 
         int rng = rand() % 7;
 
-        printf("sleep\n");
+        //printf("sleep\n");
         if (rng == 1){
             drop_bomb_player(p, b);
         }

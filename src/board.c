@@ -364,9 +364,11 @@ void update_all_clock(Board *b){
 
                     //BREAK THE WALL
                     if(b->board[i][j]->kind_cell == WALL){
-                        enum object_type *ot = get_rand_ot();
-                        update_cell(b->board[i][j], ot, OBJECT);
-
+                        int a = rand() % 10;
+                        if (a < 2){
+                            enum object_type *ot = get_rand_ot();
+                            update_cell(b->board[i][j], ot, OBJECT);
+                        }
                     }
                     //KILL THE PLAYER
                     if(b->board[i][j]->kind_cell == PLAYER){

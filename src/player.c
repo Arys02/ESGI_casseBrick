@@ -62,9 +62,16 @@ void update_player_pos(Player *p, int x, int y){
     p->pos_y = y;
 }
 //update all clocks from the players (bomb and immunity if it has one)
-void update_clocks_player(Player *p){
+void update_clock_player(Player *p){
     if (p->immunity_clock > 0)
         p->immunity_clock--;
+}
+
+
+void update_clocks_players(Player **players, int nb_players){
+    for(int i = 0; i < nb_players; i++){
+        update_clock_player(players[i]);
+    }
 }
 
 

@@ -48,6 +48,8 @@ void explosions_timer_all(int x, int y, Board *board, int exp_size);
 
 void update_all_clock(Board *b);
 
+void update_clock_players_board(Board *b);
+
 
 
 #endif //ESGI_CASSEBRICK_BOARD_H

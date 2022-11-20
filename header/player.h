@@ -70,13 +70,15 @@ Player *build_player(char *name, char symbol, int bomb_quantity);
 
 void free_player(Player *p);
 //update all clocks from the players (bomb and immunity if it has one)
-void update_clocks_player(Player *p);
+void update_clock_player(Player *p);
 
+void update_clocks_players(Player **p, int nb_players);
 void update_bomb_quantity_player(Player *p, int new_value);
 
 void get_object_player(Player *p, enum object_type);
 void update_player_pos(Player *p, int x, int y);
 void display_player_inf(Player *p);
+
 
 
 #endif //ESGI_CASSEBRICK_PLAYER_H

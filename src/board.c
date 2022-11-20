@@ -344,6 +344,7 @@ void explosions_timer_down(int x, int y, Board *board, int exp_size){
  * @param b the board
  */
 void update_all_clock(Board *b){
+    update_clock_players_board(b);
     for(int i = 0; i < b->height; i++){
         for(int j = 0; j < b->width; j++){
             if (b->board[i][j]->clock > -1){
@@ -361,15 +362,27 @@ void update_all_clock(Board *b){
                     if(b->board[i][j]->kind_cell == PLAYER){
 
                         //TODO check object for protection or life
-                        if(((Player *)b->board[i][j]->content)->kp ==GAMER){
-                            //PERDU
-                            //exit(1);
+                        Player *p = (Player *)b->board[i][j]->content;
+                        if (p->immunity_clock <= 0 && p->has_heart == 0 && p->life == 1){
+                            if(p->kp ==GAMER){
+                                printf("PERDU\n");
+                                exit(1);
+                            }
+                            else{
+                                p->is_dead = 1;
+                            }
+                            update_cell(b->board[i][j], NULL, VOID);
                         }
-                        else{
-                            ((Player *)b->board[i][j]->content)->is_dead = 1;
+                        else {
+                            if (p->immunity_clock > 0){}
+                            else if (p->has_heart){
+                                p->has_heart = -1;
+                            }
+                            else {
+                                p->life--;
+                            }
                         }
 
-                        update_cell(b->board[i][j], NULL, VOID);
                     }
                     //THE BOMB DISAPEAR
                     if (b->board[i][j]->kind_cell == BOMB){
@@ -382,4 +395,8 @@ void update_all_clock(Board *b){
         }
     }
    printf("\n") ;
+}
+
+void update_clock_players_board(Board *b){
+    update_clocks_players(b->players, b->nb_player);
 }

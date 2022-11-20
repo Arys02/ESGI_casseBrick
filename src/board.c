@@ -60,6 +60,7 @@ Board *build_board(int inb_player, Player **p, char *file){
     return new_board;
 }
 
+
 /**
  * It frees the memory allocated for the board
  *
@@ -80,6 +81,7 @@ void free_board(Board *b){
     free(b->board);
     free(b);
 }
+
 
 //switch two cell
 /**
@@ -124,6 +126,7 @@ Cell *get_cell(Board *b, int x, int y){
     return b->board[x][y];
 }
 
+
 /**
  * It counts the number of players on the board
  *
@@ -143,6 +146,7 @@ int count_nb_player(Cell ***board, int width, int height){
     }
     return count;
 }
+
 
 /**
  * It fills the player table with the players found on the board
@@ -176,6 +180,7 @@ void fill_player_table(Cell ***board, int width, int height, Player **nb_player,
 
 }
 
+
 /**
  * It prints the board
  *
@@ -195,6 +200,7 @@ void print_board_cell(Cell ***board, int width, int height){
         printf("\n");
     }
 }
+
 
 /**
  * If the destination is outside the board, then set the destination to the opposite side of the board
@@ -236,6 +242,7 @@ void explosions_timer_all(int x, int y, Board *board, int exp_size){
     board->board[x][y]->clock = TIMER;
 }
 
+
 /**
  * It set the timer for explosion in every direction
  *
@@ -260,6 +267,7 @@ void explosions_timer_left(int x, int y, Board *board, int exp_size){
        board->board[x][y]->clock = TIMER;
    }
 }
+
 
 /**
  * It explodes the bomb in the right direction
@@ -297,6 +305,7 @@ void explosions_timer_right(int x, int y, Board *board, int exp_size){
 void explosions_timer_up(int x, int y, Board *board, int exp_size){
     //explode left
     int count = 0;
+    outside_board(&x, &y, board);
     while(board->board[x][y]->kind_cell != WALL && board->board[x][y]->kind_cell != UNBREAK){
         outside_board(&x, &y, board);
 
@@ -333,6 +342,7 @@ void explosions_timer_down(int x, int y, Board *board, int exp_size){
         if(count >= exp_size)
             break;
     };
+    outside_board(&x, &y, board);
     if(board->board[x][y]->kind_cell == WALL){
         board->board[x][y]->clock = TIMER;
     }
@@ -397,6 +407,11 @@ void update_all_clock(Board *b){
    printf("\n") ;
 }
 
+/**
+ * It updates the clock of the players
+ *
+ * @param b the board
+ */
 void update_clock_players_board(Board *b){
     update_clocks_players(b->players, b->nb_player);
 }

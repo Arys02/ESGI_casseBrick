@@ -75,6 +75,7 @@ void player_move(Player *p, Board *b, enum direction dir){
     if (b->board[dst_x][dst_y]->kind_cell == OBJECT){
         moved = 1;
         get_object_player(p, *((enum object_type*) b->board[dst_x][dst_y]->content));
+        free((enum object_type*) b->board[dst_x][dst_y]->content);
         update_cell(b->board[dst_x][dst_y], p, PLAYER);
         update_player_pos(p, dst_x, dst_y);
     }
@@ -88,5 +89,4 @@ void player_move(Player *p, Board *b, enum direction dir){
             update_cell(b->board[src_x][src_y], NULL, VOID);
         }
     }
-
 }

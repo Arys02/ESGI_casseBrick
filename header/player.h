@@ -15,8 +15,17 @@
 #define DEFAULT_BOMB_RANGE 4
 #define BOMB_MAX_RANGE 10
 #define IMMUNITY_TIME 5
+#define DIST_MAX 10
 
 
+
+enum direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    NONE_D
+};
 
 /* An enumeration of the possible collision types that a player can have with a bomb. */
 enum bomb_collision {
@@ -29,6 +38,15 @@ enum kind_player{
     GAMER,
     IA
 };
+
+typedef struct {
+    int x;
+    int y;
+    int nb_move;
+    enum direction dir[DIST_MAX];
+    int is_safe;
+}Path;
+
 
 
 /**
@@ -56,13 +74,17 @@ typedef struct {
     int pos_x;
     int pos_y;
     Bomb **Inventory;
+    int is_dead;
 
     //objects
     int has_heart;
     int immunity_clock;
     enum bomb_collision bc;
+
+    //IA management
     enum kind_player kp;
-    int is_dead;
+    //if kp is IA :
+     Path path;
 }
 Player;
 
@@ -78,6 +100,8 @@ void update_bomb_quantity_player(Player *p, int new_value);
 void get_object_player(Player *p, enum object_type);
 void update_player_pos(Player *p, int x, int y);
 void display_player_inf(Player *p);
+
+Path init_path();
 
 
 

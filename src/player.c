@@ -35,6 +35,7 @@ Player *build_player(char *name, char symbol, int bomb_quantity){
     new_player->immunity_clock = 0;
     new_player->bc = NONE;
     new_player->is_dead = 0;
+    new_player->path = init_path();
     return new_player;
 }
 
@@ -128,4 +129,16 @@ void display_player_inf(Player *p){
     printf("has heart : %d\n", p->has_heart);
     printf("immunity clock : %d\n", p->immunity_clock);
     printf("collision : %d\n", p->bc);
+}
+
+Path init_path(){
+    Path p;
+    p.x = -1;
+    p.y = -1;
+    p.is_safe = 0;
+    p.nb_move = 0;
+    for(int i = 0; i < DIST_MAX; i++){
+        p.dir[i] = NONE_D;
+    }
+    return p;
 }

@@ -8,12 +8,6 @@
 #include "board.h"
 #include "object.h"
 
-enum direction {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-};
 
 void drop_bomb_player(Player *p, Board *b);
 void player_move(Player *p, Board *b, enum direction dir);

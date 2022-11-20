@@ -19,7 +19,7 @@
 Player *build_player(char *name, char symbol, int bomb_quantity){
     Player *new_player = malloc(sizeof(Player));
     new_player->Inventory = malloc((sizeof(Bomb*) * MAX_BOMB));
-    for(int i = 0; i < bomb_quantity; i++){
+    for(int i = 0; i < MAX_BOMB; i++){
         new_player->Inventory[i] = build_bomb();
     }
 
@@ -67,26 +67,58 @@ void update_clocks_player(Player *p){
         p->immunity_clock--;
 }
 
-void update_bomb_range_player(Player *p, int new_value){
-    p->bomb_range = new_value;
-}
+
 void update_bomb_quantity_player(Player *p, int new_value){
-    p->bomb_quantity++;
-    //TODO add bomb inventory
+    if (new_value < 10 && new_value > 0){
+        p->bomb_quantity = new_value;
+    }
 }
-void update_bomb_collision(Player *p, enum bomb_collision bc){
-    //TODO
-}
+
 
 //call the function corresponding of the right object
 void get_object_player(Player *p, enum object_type ot){
-    //TODO
+    switch(ot){
+        case B_UP:
+            update_bomb_quantity_player(p, p->bomb_quantity + 1);
+            break;
+        case B_DOWN:
+            update_bomb_quantity_player(p, p->bomb_quantity - 1);
+            break;
+        case F_YELLOW:
+            p->bomb_range++;
+            break;
+        case F_BLUE:
+            p->bomb_range = p->bomb_range - 1 > 1 ? p->bomb_range - 1 : p->bomb_range;
+            break;
+        case F_RED:
+            p->bomb_range = BOMB_MAX_RANGE;
+            break;
+        case PASS_BOMB:
+            p->bc = PASS;
+            break;
+        case KICK_BOMB:
+            p->bc = KICK;
+            break;
+        case INV:
+            p->immunity_clock = IMMUNITY_TIME;
+            break;
+        case HEART:
+            p->has_heart = p->has_heart != -1 ? 1 : -1;
+            break;
+        case HP_UP:
+            break;
+    }
 }
 
-void add_new_bomb_inventory(Player *p){
-   //TODO
-}
-
-void remove_bomb_inventory(Player *p){
-   //TODO
+void display_player_inf(Player *p){
+    printf("\n");
+    printf("name    : %s \n", p->name);
+    printf("symbol  : %c \n", p->symbol);
+    printf("life    : %d\n", p->life);
+    printf("range   : %d, nb_bomb : %d\n", p->bomb_range, p->bomb_quantity);
+    printf("pos   : %d,%d\n", p->pos_x, p->pos_y);
+    printf("- Object -\n");
+    printf("has heart : %d\n", p->has_heart);
+    printf("immunity clock : %d\n", p->immunity_clock);
+    printf("collision : %d\n", p->bc);
 }

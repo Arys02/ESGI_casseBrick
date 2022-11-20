@@ -44,6 +44,8 @@ int main() {
     while(1){
         printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         print_board_cell(b->board, b->width, b->height);
+        display_player_inf(b->players[0]);
+
         int frappe = 'e';
 
         //if(kbhit())

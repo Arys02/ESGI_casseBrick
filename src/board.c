@@ -359,10 +359,11 @@ void update_all_clock(Board *b){
                     }
                     //KILL THE PLAYER
                     if(b->board[i][j]->kind_cell == PLAYER){
+
+                        //TODO check object for protection or life
                         if(((Player *)b->board[i][j]->content)->kp ==GAMER){
                             //PERDU
                             //exit(1);
-                            //TODO
                         }
                         else{
                             ((Player *)b->board[i][j]->content)->is_dead = 1;

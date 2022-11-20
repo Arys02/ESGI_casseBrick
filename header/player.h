@@ -13,6 +13,9 @@
 
 #define MAX_BOMB 10
 #define DEFAULT_BOMB_RANGE 4
+#define BOMB_MAX_RANGE 10
+#define IMMUNITY_TIME 5
+
 
 
 /* An enumeration of the possible collision types that a player can have with a bomb. */
@@ -69,13 +72,11 @@ void free_player(Player *p);
 //update all clocks from the players (bomb and immunity if it has one)
 void update_clocks_player(Player *p);
 
-void update_bomb_range_player(Player *p, int new_value);
 void update_bomb_quantity_player(Player *p, int new_value);
-void update_bomb_collision(Player *p, enum bomb_collision);
 
 void get_object_player(Player *p, enum object_type);
 void update_player_pos(Player *p, int x, int y);
-
+void display_player_inf(Player *p);
 
 
 #endif //ESGI_CASSEBRICK_PLAYER_H

@@ -74,7 +74,9 @@ void player_move(Player *p, Board *b, enum direction dir){
 
     if (b->board[dst_x][dst_y]->kind_cell == OBJECT){
         moved = 1;
-       //TODO
+        get_object_player(p, *((enum object_type*) b->board[dst_x][dst_y]->content));
+        update_cell(b->board[dst_x][dst_y], p, PLAYER);
+        update_player_pos(p, dst_x, dst_y);
     }
     //if player was on bomb after moving
     if (moved){

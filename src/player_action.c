@@ -60,9 +60,13 @@ void player_move(Player *p, Board *b, enum direction dir){
 
     //if next case is a bomb
     if (b->board[dst_x][dst_y]->kind_cell == BOMB){
+        Cell *current_cell = b->board[dst_x][dst_y];
         if (p->bc == PASS) {
-            //moved = 1;
-            //TODO
+            moved = 1;
+            current_cell->tmp_content = current_cell->content;
+            update_cell(current_cell, p, PLAYER);
+            update_player_pos(p, dst_x, dst_y);
+
             //se superpose
         }
         if (p->bc == KICK){
